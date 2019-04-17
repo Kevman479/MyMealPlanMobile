@@ -12,10 +12,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -23,9 +21,6 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
             <Label Grid.Column="1" Grid.Row="1" Text="1-1"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Label Grid.Column="2" Grid.Row="2" Text="2-2"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
         </Grid>

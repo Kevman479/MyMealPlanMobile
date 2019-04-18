@@ -10,22 +10,21 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-
-        <StackLayout Orientation="Vertical">
-            <Grid x:Name="MonthListGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Button Text="&lt;" Clicked="PreviousMonth_Clicked" Grid.Column="0" BackgroundColor="Transparent"  />
-                <Label x:Name="MonthNameLabel" Text="{Binding MonthName}" Grid.Column="1" />
-                <Button Text="&gt;" Clicked="NextMonth_Clicked" Grid.Column="2" />
-                <Grid x:Name="Calendar" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand">
+        <Grid x:Name="MonthListGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Text="&lt;" Clicked="PreviousMonth_Clicked" Grid.Column="0" BackgroundColor="Transparent"  />
+            <Label x:Name="MonthNameLabel" Grid.Column="1" />
+            <Button Text="&gt;" Clicked="NextMonth_Clicked" Grid.Column="2" />
+            <ScrollView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Orientation="Both">
+                <Grid x:Name="Calendar">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -36,7 +35,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                 </Grid>
-            </Grid>
-        </StackLayout>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

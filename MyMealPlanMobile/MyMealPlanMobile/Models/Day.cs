@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace MyMealPlanMobile.Models
 {
@@ -23,5 +24,6 @@ namespace MyMealPlanMobile.Models
         public Meal Lunch { get; set; }
         public Meal Dinner { get; set; }
         public Meal Snack { get; set; }
+        public StackLayout Stack { get; set; }
     }
 }

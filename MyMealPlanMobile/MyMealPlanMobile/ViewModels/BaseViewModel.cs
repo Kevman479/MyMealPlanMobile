@@ -12,7 +12,8 @@ namespace MyMealPlanMobile.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<Item> ItemStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<Day> DayStore => DependencyService.Get<IDataStore<Day>>() ?? new DayStore();
 
         bool isBusy = false;
         public bool IsBusy

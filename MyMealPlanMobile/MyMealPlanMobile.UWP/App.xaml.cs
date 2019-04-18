@@ -30,6 +30,7 @@ namespace MyMealPlanMobile.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Windows.UI.ViewManagement.ApplicationView.PreferredLaunchWindowingMode = Windows.UI.ViewManagement.ApplicationViewWindowingMode.FullScreen;
         }
 
         /// <summary>

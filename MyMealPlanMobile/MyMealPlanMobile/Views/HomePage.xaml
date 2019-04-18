@@ -1,28 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyMealPlanMobile.Views.HomePage">
+             x:Class="MyMealPlanMobile.Views.HomePage"
+              Title="{Binding Title}"
+             x:Name="Home">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Text="0-0"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Label Grid.Column="1" Grid.Row="1" Text="1-1"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </Grid>
+
+        <StackLayout Orientation="Vertical">
+            <Grid x:Name="MonthListGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="&lt;" Clicked="PreviousMonth_Clicked" Grid.Column="0" BackgroundColor="Transparent"  />
+                <Label x:Name="MonthNameLabel" Text="{Binding MonthName}" Grid.Column="1" />
+                <Button Text="&gt;" Clicked="NextMonth_Clicked" Grid.Column="2" />
+                <Grid x:Name="Calendar" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

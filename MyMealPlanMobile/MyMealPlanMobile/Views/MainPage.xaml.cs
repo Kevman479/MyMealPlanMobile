@@ -30,6 +30,9 @@ namespace MyMealPlanMobile.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Browse:
+                        MenuPages.Add(id, new NavigationPage(new HomePage()));
+                        break;
+                    case (int)MenuItemType.Items:
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;
                     case (int)MenuItemType.About:

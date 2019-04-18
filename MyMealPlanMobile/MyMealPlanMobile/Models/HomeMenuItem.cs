@@ -7,6 +7,7 @@ namespace MyMealPlanMobile.Models
     public enum MenuItemType
     {
         Browse,
+        Items,
         About
     }
     public class HomeMenuItem

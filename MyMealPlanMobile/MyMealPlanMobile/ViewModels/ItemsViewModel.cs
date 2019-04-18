@@ -25,7 +25,7 @@ namespace MyMealPlanMobile.ViewModels
             {
                 var newItem = item as Item;
                 Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+                await ItemStore.AddItemAsync(newItem);
             });
         }
 
@@ -36,10 +36,12 @@ namespace MyMealPlanMobile.ViewModels
 
             IsBusy = true;
 
+            Debug.WriteLine("Loading items.");
+
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await ItemStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);

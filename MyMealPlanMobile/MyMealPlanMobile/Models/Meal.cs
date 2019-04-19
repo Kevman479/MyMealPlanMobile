@@ -6,12 +6,21 @@ namespace MyMealPlanMobile.Models
 {
     public class Meal
     {
-        public string id { get; set; }
-        public string Name { get; set; }
-        public enum MealType { Breakfast, Lunch, Dinner, Snack };
-        public MealType Type { get; set; }
-        public string Prep { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
-        public Dictionary<Ingredient, string> IngredientPrepOverride { get; set; }
+        public string Id { get; set; }
+        public List<Recipe> Recipes { get; set; }
+        public Day Day { get; set; }
+        public Recipe.RecipeType Type { get; set; }
+        public string Description
+        {
+            get
+            {
+                var description = "";
+                foreach (var recipe in Recipes)
+                {
+                    description += recipe.Description + ", ";
+                }
+                return description.Substring(0, description.Length - 3);
+            }
+        }
     }
 }

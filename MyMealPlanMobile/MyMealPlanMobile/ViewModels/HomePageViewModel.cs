@@ -14,13 +14,51 @@ namespace MyMealPlanMobile.ViewModels
     {
         public Timeframe Timeframe { get; set; }
         public ObservableCollection<Day> Days { get; set; }
+        public ObservableCollection<Recipe> Recipes { get; set; }
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
+        public ObservableCollection<Meal> Meals { get; set; }
         public Command LoadDaysCommand { get; set; }
 
         public HomePageViewModel()
         {
             Title = "Home";
             Days = new ObservableCollection<Day>();
+            Recipes = new ObservableCollection<Recipe>();
+            Ingredients = new ObservableCollection<Ingredient>();
+            Meals = new ObservableCollection<Meal>();
             LoadDaysCommand = new Command(async (TargetDay) => await ExecuteLoadDaysCommand((DateTime)TargetDay));
+            LoadDaysCommand.Execute(DateTime.Now);
+            foreach (var day in DayStore.GetItemsAsync().Result)
+            {
+                Days.Add(day);
+            }
+            foreach (var recipe in RecipeStore.GetItemsAsync().Result)
+            {
+                Recipes.Add(recipe);
+            }
+            foreach (var ingredient in IngredientStore.GetItemsAsync().Result)
+            {
+                Ingredients.Add(ingredient);
+            }
+            foreach (var meal in MealStore.GetItemsAsync().Result)
+            {
+                Meals.Add(meal);
+            }
+
+
+            MessagingCenter.Subscribe<NewRecipePage, Recipe>(this, "AddRecipe", async (obj, recipe) =>
+            {
+                var newRecipe = recipe as Recipe;
+                Recipes.Add(newRecipe);
+                await RecipeStore.AddItemAsync(newRecipe);
+            });
+
+            MessagingCenter.Subscribe<NewIngredientPage, Ingredient>(this, "AddIngredient", async (obj, ingredient) =>
+            {
+                var newIngredient = ingredient as Ingredient;
+                Ingredients.Add(newIngredient);
+                await IngredientStore.AddItemAsync(newIngredient);
+            });
         }
 
         async Task ExecuteLoadDaysCommand(DateTime TargetDay)

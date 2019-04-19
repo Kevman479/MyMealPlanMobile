@@ -6,7 +6,7 @@
              x:Name="Home">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+        <ToolbarItem Text="New Item" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

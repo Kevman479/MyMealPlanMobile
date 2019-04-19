@@ -14,6 +14,9 @@ namespace MyMealPlanMobile.ViewModels
     {
         public IDataStore<Item> ItemStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
         public IDataStore<Day> DayStore => DependencyService.Get<IDataStore<Day>>() ?? new DayStore();
+        public IDataStore<Ingredient> IngredientStore => DependencyService.Get<IDataStore<Ingredient>>() ?? new IngredientStore();
+        public IDataStore<Recipe> RecipeStore => DependencyService.Get<IDataStore<Recipe>>() ?? new RecipeStore();
+        public IDataStore<Meal> MealStore => DependencyService.Get<IDataStore<Meal>>() ?? new MealStore();
 
         bool isBusy = false;
         public bool IsBusy

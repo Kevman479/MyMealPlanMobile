@@ -23,33 +23,26 @@ namespace MyMealPlanMobile.Views
             BindingContext = viewModel = new HomePageViewModel();
         }
 
-        int i = 0;
-        private void Alert(object sender, EventArgs e)
+        async private void AddItem_Clicked(object sender, EventArgs e)
         {
-            i++;
-            DisplayAlert("Alert", $"You have been alerted {i} times", "OK");
-        }
-
-        private void AddItem_Clicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Page", this.GetType().Name, "OK");
-        }
-
-        private void DaysListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-
+            var ItemTypes = new string[] { "Recipe", "Ingredient" };
+            string NewItemType = await DisplayActionSheet("Select new item type.", "Cancel", null, ItemTypes);
+            if (NewItemType == "Recipe")
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new NewRecipePage()));
+            }
+            else if (NewItemType == "Ingredient")
+            {
+                await Navigation.PushModalAsync(new NavigationPage(new NewIngredientPage()));
+            }
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Days.Count == 0)
-            {
-                viewModel.LoadDaysCommand.Execute(DateTime.Now);
-                MonthNameLabel.Text = viewModel.Timeframe.FirstDay.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("en"));
-                BuildCalendar();
-            }
+            MonthNameLabel.Text = viewModel.Timeframe.FirstDay.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("en"));
+            BuildCalendar();
         }
 
         private void PreviousMonth_Clicked(object sender, EventArgs e)
@@ -95,10 +88,10 @@ namespace MyMealPlanMobile.Views
                 {
                     day.Stack = DayOutline;
                     var DayTitleLabel = new Label() { Text = day.Date.Day.ToString(), ClassId = $"{day.Id}", HorizontalTextAlignment = TextAlignment.Center };
-                    var BreakfastLabel = new Label() { Text = day.Breakfast != null ? day.Breakfast.Name : "Breakfast", ClassId = $"{day.Id}.Breakfast" };
-                    var LunchLabel = new Label() { Text = day.Lunch != null ? day.Lunch.Name : "Lunch", ClassId = $"{day.Id}.Lunch" };
-                    var DinnerLabel = new Label() { Text = day.Dinner != null ? day.Dinner.Name : "Dinner", ClassId = $"{day.Id}.Dinner" };
-                    var SnackLabel = new Label() { Text = day.Snack != null ? day.Snack.Name : "Snack", ClassId = $"{day.Id}.Snack" };
+                    var BreakfastLabel = new Label() { Text = day.Breakfast != null ? day.Breakfast.Description : "Breakfast", ClassId = $"{day.Id}.Breakfast" };
+                    var LunchLabel = new Label() { Text = day.Lunch != null ? day.Lunch.Description : "Lunch", ClassId = $"{day.Id}.Lunch" };
+                    var DinnerLabel = new Label() { Text = day.Dinner != null ? day.Dinner.Description : "Dinner", ClassId = $"{day.Id}.Dinner" };
+                    var SnackLabel = new Label() { Text = day.Snack != null ? day.Snack.Description : "Snack", ClassId = $"{day.Id}.Snack" };
 
                     var DayTitle = new Frame() { Content = DayTitleLabel, ClassId = $"{day.Id}" };
                     var Breakfast = new Frame() { BorderColor = Color.Black, BackgroundColor = Color.Gray, ClassId = $"{day.Id}.Breakfast", Content = BreakfastLabel };
@@ -156,7 +149,7 @@ namespace MyMealPlanMobile.Views
 
         private void DayTapped(Models.Day Day, View Element)
         {
-            DisplayAlert("", Day.DisplayDate + " - " + Element.ClassId, "Ok");
+            DisplayAlert("", Element.ClassId, "Ok");
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMealPlanMobile.Views.NewIngredientPage"
+             Title="New Recipe">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="5" Padding="5">
+            <Label Text="Name" FontSize="Medium" />
+            <Entry Text="{Binding Ingredient.Name}" FontSize="Small" />
+            <Label Text="Description" FontSize="Medium" />
+            <Editor Text="{Binding Ingredient.Description}" FontSize="Small" Margin="0" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height = "Auto" />
+                    <RowDefinition Height = "Auto" />
+                    <RowDefinition Height = "300*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width= "*" />
+                    <ColumnDefinition Width= "*" />
+                    <ColumnDefinition Width= "Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Purchase size options" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="Medium" />
+                <Entry x:Name="Amount" Keyboard="Keyboard.Numeric" Grid.Column="0" Grid.Row="1" />
+                <Entry x:Name="Unit" Grid.Column="1" Grid.Row="1" />
+                <Button Text="Add" Grid.Column="2" Grid.Row="1" Clicked="NewSizeOption_Clicked" />
+                <Grid x:Name="SizeGrid" Grid.ColumnSpan="3" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

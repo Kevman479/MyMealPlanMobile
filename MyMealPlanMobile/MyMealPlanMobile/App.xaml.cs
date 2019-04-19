@@ -16,10 +16,16 @@ namespace MyMealPlanMobile
         {
             InitializeComponent();
 
-            if (UseMockDataStore)
-                DependencyService.Register<MockDataStore>();
-            else
-                DependencyService.Register<AzureDataStore>();
+            //if (UseMockDataStore)
+            //    DependencyService.Register<MockDataStore>();
+            //else
+            //    DependencyService.Register<AzureDataStore>();
+
+            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<DayStore>();
+            DependencyService.Register<IngredientStore>();
+            DependencyService.Register<RecipeStore>();
+            DependencyService.Register<MealStore>();
             MainPage = new MainPage();
         }
 

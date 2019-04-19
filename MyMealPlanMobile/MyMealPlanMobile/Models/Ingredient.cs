@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace MyMealPlanMobile.Models
 {
-    public class Ingredient
+    public class Ingredient : IngredientBase
     {
-        public string id { get; set; }
-        public string Name { get; set; }
-        public string Prep { get; set; }
+        public float Amount;
+        public string AmountUnit;
     }
 }

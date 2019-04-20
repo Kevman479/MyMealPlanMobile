@@ -24,11 +24,32 @@ namespace MyMealPlanMobile.Views
 
             Recipe = new Recipe { Id = Guid.NewGuid().ToString() };
 
-            BindingContext = this;
+            BindingContext = Recipe;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            Recipe.Types = new List<Recipe.RecipeType>();
+            if (Breakfast.IsToggled)
+            {
+                Recipe.Types.Add(Recipe.RecipeType.Breakfast);
+            }
+            if (Lunch.IsToggled)
+            {
+                Recipe.Types.Add(Recipe.RecipeType.Lunch);
+            }
+            if (Dinner.IsToggled)
+            {
+                Recipe.Types.Add(Recipe.RecipeType.Dinner);
+            }
+            if (Snack.IsToggled)
+            {
+                Recipe.Types.Add(Recipe.RecipeType.Snack);
+            }
+            if (Leftovers.IsToggled)
+            {
+                Recipe.Types.Add(Recipe.RecipeType.Leftovers);
+            }
             MessagingCenter.Send(this, "AddRecipe", Recipe);
             await Navigation.PopModalAsync();
         }

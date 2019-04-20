@@ -10,32 +10,55 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <Grid x:Name="MonthListGrid">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Button Text="&lt;" Clicked="PreviousMonth_Clicked" Grid.Column="0" BackgroundColor="Transparent"  />
-            <Label x:Name="MonthNameLabel" Grid.Column="1" />
-            <Button Text="&gt;" Clicked="NextMonth_Clicked" Grid.Column="2" />
-            <ScrollView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Orientation="Both">
-                <Grid x:Name="Calendar">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                </Grid>
-            </ScrollView>
+            <ListView x:Name="GroupedView" GroupDisplayBinding="{Binding Title}" RowHeight="75" WidthRequest="200" GroupShortNameBinding="{Binding Shortname}" IsGroupingEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Name}" Detail="{Binding Description}" ImageSource="Binding Icon" Height="75" TextColor="#005569" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="#E2F5F9">
+                                <Button Image="{Binding StateIcon}" BackgroundColor="Transparent" BorderColor="Transparent" BorderWidth="0" Clicked="Header_Tapped" CommandParameter="{Binding .}" />
+                                <Label Text="{Binding TitleWithItemCount}" FontSize="15" VerticalOptions="Center" TextColor="#005569" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
+            <Grid x:Name="MonthListGrid" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="&lt;" Clicked="PreviousMonth_Clicked" Grid.Column="0" BackgroundColor="Transparent"  />
+                <Label x:Name="MonthNameLabel" Grid.Column="1" />
+                <Button Text="&gt;" Clicked="NextMonth_Clicked" Grid.Column="2" />
+                <ScrollView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always" Orientation="Both">
+                    <Grid x:Name="Calendar">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ScrollView>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using MyMealPlanMobile.ViewModels;
+using MyMealPlanMobile.Models;
 
 namespace MyMealPlanMobile.Views
 {
@@ -19,8 +20,10 @@ namespace MyMealPlanMobile.Views
         public HomePage()
         {
             InitializeComponent();
-
             BindingContext = viewModel = new HomePageViewModel();
+
+            viewModel._allGroups = RecipeGroup.RecipeGroups;
+            GroupedView.ItemsSource = viewModel.UpdateListContents();
         }
 
         async private void AddItem_Clicked(object sender, EventArgs e)
@@ -83,9 +86,9 @@ namespace MyMealPlanMobile.Views
             CurrentColumn = 0;
             foreach (var day in viewModel.Days)
             {
-                var DayOutline = new StackLayout();
                 if (day.Id != null)
                 {
+                    var DayOutline = new StackLayout();
                     day.Stack = DayOutline;
                     var DayTitleLabel = new Label() { Text = day.Date.Day.ToString(), ClassId = $"{day.Id}", HorizontalTextAlignment = TextAlignment.Center };
                     var BreakfastLabel = new Label() { Text = day.Breakfast != null ? day.Breakfast.Description : "Breakfast", ClassId = $"{day.Id}.Breakfast" };
@@ -147,9 +150,16 @@ namespace MyMealPlanMobile.Views
             Element.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
-        private void DayTapped(Models.Day Day, View Element)
+        private void DayTapped(Day Day, View Element)
         {
             DisplayAlert("", Element.ClassId, "Ok");
         }
+
+        private void Header_Tapped(object sender, EventArgs e)
+        {
+            int selectedIndex = viewModel._expandedGroups.IndexOf(((RecipeGroup)((Button)sender).CommandParameter));
+            viewModel._allGroups[selectedIndex].Expanded = !viewModel._allGroups[selectedIndex].Expanded;
+            GroupedView.ItemsSource = viewModel.UpdateListContents();
+        } 
     }
 }

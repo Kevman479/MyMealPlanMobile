@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyMealPlanMobile.Views.NewIngredientPage"
-             Title="New Recipe">
+             Title="New Ingredient">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
@@ -12,9 +12,9 @@
     <ContentPage.Content>
         <StackLayout Spacing="5" Padding="5">
             <Label Text="Name" FontSize="Medium" />
-            <Entry Text="{Binding Ingredient.Name}" FontSize="Small" />
+            <Entry Text="{Binding Name}" FontSize="Small" />
             <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Ingredient.Description}" FontSize="Small" Margin="0" />
+            <Editor Text="{Binding Description}" FontSize="Small" AutoSize="TextChanges" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height = "Auto" />

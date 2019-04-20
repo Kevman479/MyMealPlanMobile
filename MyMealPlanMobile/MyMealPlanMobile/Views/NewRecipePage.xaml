@@ -10,61 +10,77 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Spacing="5" Padding="5">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Recipe.Text}" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Recipe.Description}" FontSize="Small" Margin="0" />
-            <Label Text="Instructions" FontSize="Medium" />
-            <Editor Text="{Binding Recipe.Preperation}" FontSize="Small" Margin="0" />
-            <Grid VerticalOptions="Center">
+        <StackLayout Orientation="Horizontal">
+            <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="15"/>
-                </Grid.RowDefinitions>
-                <Label Text="Breakfast" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
-                <Switch x:Name="Breakfast" Grid.Row="0" HorizontalOptions="EndAndExpand" Grid.Column="1" VerticalOptions="Center" Scale="0.5" />
-            </Grid>
-            <Grid VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15"/>
-                </Grid.RowDefinitions>
-                <Label Text="Lunch" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
-                <Switch x:Name="Lunch" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
-            </Grid>
-            <Grid VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15"/>
-                </Grid.RowDefinitions>
-                <Label Text="Dinner" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
-                <Switch x:Name="Dinner" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
-            </Grid>
-            <Grid VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15"/>
-                </Grid.RowDefinitions>
-                <Label Text="Snack" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
-                <Switch x:Name="Snack" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
-            </Grid>
-            <Grid VerticalOptions="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15"/>
-                </Grid.RowDefinitions>
-                <Label Text="Leftovers" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
-                <Switch x:Name="Leftovers" Toggled="Leftovers_Toggled" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
-            </Grid>
-            <Grid x:Name="LeftoverDates" IsVisible="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Date Made" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
-                <DatePicker x:Name="LeftoverCreation" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="End" />
-                <Label Text="Date to Discard" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" />
-                <DatePicker x:Name="LeftoverExpiration" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End" />
+                <ScrollView Orientation="Vertical">
+                
+                </ScrollView>
+                <ScrollView Orientation="Vertical">
+                    <StackLayout Spacing="5" Padding="5">
+                        <Label Text="Name" FontSize="Medium" />
+                        <Entry Text="{Binding Name}" FontSize="Small"  />
+                        <Label Text="Description" FontSize="Medium" />
+                        <Editor Text="{Binding Description}" FontSize="Small" AutoSize="TextChanges" />
+                        <Label Text="Instructions" FontSize="Medium" />
+                        <Editor Text="{Binding Preperation}" FontSize="Small" AutoSize="TextChanges" />
+                        <Grid VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Breakfast" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                            <Switch x:Name="Breakfast" Grid.Row="0" HorizontalOptions="EndAndExpand" Grid.Column="1" VerticalOptions="Center" Scale="0.5" />
+                        </Grid>
+                        <Grid VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Lunch" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                            <Switch x:Name="Lunch" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
+                        </Grid>
+                        <Grid VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Dinner" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                            <Switch x:Name="Dinner" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
+                        </Grid>
+                        <Grid VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Snack" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                            <Switch x:Name="Snack" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
+                        </Grid>
+                        <Grid VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Leftovers" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                            <Switch x:Name="Leftovers" Toggled="Leftovers_Toggled" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Scale="0.5" />
+                        </Grid>
+                        <Grid x:Name="LeftoverDates" IsVisible="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Date Made" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
+                            <DatePicker x:Name="LeftoverCreation" Date="{Binding CreatedOn}" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="End" />
+                            <Label Text="Date to Discard" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" />
+                            <DatePicker x:Name="LeftoverExpiration" Date="{Binding DiscardOn}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="End" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

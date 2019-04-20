@@ -19,6 +19,9 @@ namespace MyMealPlanMobile.ViewModels
         public ObservableCollection<Meal> Meals { get; set; }
         public Command LoadDaysCommand { get; set; }
 
+        public ObservableCollection<RecipeGroup> _allGroups;
+        public ObservableCollection<RecipeGroup> _expandedGroups;
+
         public HomePageViewModel()
         {
             Title = "Home";
@@ -45,11 +48,21 @@ namespace MyMealPlanMobile.ViewModels
                 Meals.Add(meal);
             }
 
-
             MessagingCenter.Subscribe<NewRecipePage, Recipe>(this, "AddRecipe", async (obj, recipe) =>
             {
                 var newRecipe = recipe as Recipe;
                 Recipes.Add(newRecipe);
+                foreach (var Type in newRecipe.Types)
+                {
+                    foreach (var group in _allGroups)
+                    {
+                        if (group.RecipeGroupType == Type)
+                        {
+                            group.Add(newRecipe);
+                        }
+                    }
+                }
+                UpdateListContents();
                 await RecipeStore.AddItemAsync(newRecipe);
             });
 
@@ -59,6 +72,24 @@ namespace MyMealPlanMobile.ViewModels
                 Ingredients.Add(newIngredient);
                 await IngredientStore.AddItemAsync(newIngredient);
             });
+        }
+
+        public ObservableCollection<RecipeGroup> UpdateListContents()
+        {
+            _expandedGroups = new ObservableCollection<RecipeGroup>();
+            foreach (var group in _allGroups)
+            {
+                var newGroup = new RecipeGroup(group.Title, group.ShortName, group.Expanded) { RecipeCount = group.Count };
+                if (group.Expanded)
+                {
+                    foreach (var recipe in group)
+                    {
+                        newGroup.Add(recipe);
+                    }
+                }
+                _expandedGroups.Add(newGroup);
+            }
+            return _expandedGroups;
         }
 
         async Task ExecuteLoadDaysCommand(DateTime TargetDay)

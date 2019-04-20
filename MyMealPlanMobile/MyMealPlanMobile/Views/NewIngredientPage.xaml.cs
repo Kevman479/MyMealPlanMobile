@@ -24,7 +24,7 @@ namespace MyMealPlanMobile.Views
 
             Ingredient = new Ingredient { Id = Guid.NewGuid().ToString() };
 
-            BindingContext = this;
+            BindingContext = Ingredient;
         }
 
         async void Save_Clicked(object sender, EventArgs e)

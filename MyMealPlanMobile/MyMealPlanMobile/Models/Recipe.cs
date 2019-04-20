@@ -8,7 +8,7 @@ namespace MyMealPlanMobile.Models
     public class Recipe
     {
         public string Id { get; set; }
-        public enum RecipeType { Breakfast, Lunch, Dinner, Snack, Leftover }
+        public enum RecipeType { Breakfast, Lunch, Dinner, Snack, Leftovers }
         public List<RecipeType> Types { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
